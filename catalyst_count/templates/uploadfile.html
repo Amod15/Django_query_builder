@@ -1,0 +1,13 @@
+{%load static%}
+<h2>Upload a File</h2>
+<form id="upload-form" enctype="multipart/form-data">
+    <input type="file" id="file-input" name="file" required><br><br>
+    <input type="submit" value="Upload">
+</form>
+
+<!-- Progress bar -->
+<div class="progress-bar">
+    <div class="progress-bar-fill" id="progress-bar-fill">0%</div>
+</div>
+<div id="status"></div>
+

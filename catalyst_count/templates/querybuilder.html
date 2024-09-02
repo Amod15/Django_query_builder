@@ -1,0 +1,436 @@
+{% csrf_token %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Catalyst Media</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/querybuilder.css' %}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+      <img src="{% static 'images/logo.png' %}" alt="Logo" style="height: 40px;">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="" id="query-builder-link">Query Builder</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="upload-data-link">Upload Data</a>
+      </li>
+    </ul>
+      <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <form action="{% url 'account_logout' %}" method="post" class="form-inline">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-outline-danger">Logout</button>
+        </form>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-4">
+        <!-- Query Builder Form -->
+        <h2 class="mb-4">Query Builder</h2>
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" placeholder="Name" name="keyword">
+                </div>
+                <div class="form-group col-md-4">
+                    <select class="form-control" name="industry">
+                        <option selected>Industry</option>
+                        <option value="">No Input</option>
+                        <option value="information_technology_and_services">Information Technology and Services</option>
+                        <option value="military">Military</option>
+                        <option value="accounting">Accounting</option>
+                        <option value="retail">Retail</option>
+                        <option value="computer_software">Computer Software</option>
+                        <option value="telecommunications">Telecommunications</option>
+                        <option value="defense_and_space">Defense & Space</option>
+                        <option value="financial_services">Financial Services</option>
+                        <option value="management_consulting">Management Consulting</option>
+                        <option value="banking">Banking</option>
+                        <option value="internet">Internet</option>
+                        <option value="consumer_electronics">Consumer Electronics</option>
+                        <option value="electrical_electronic_manufacturing">Electrical/Electronic Manufacturing</option>
+                        <option value="public_policy">Public Policy</option>
+                        <option value="government_administration">Government Administration</option>
+                        <option value="restaurants">Restaurants</option>
+                        <option value="hospital_and_health_care">Hospital & Health Care</option>
+                        <option value="aviation_and_aerospace">Aviation & Aerospace</option>
+                        <option value="automotive">Automotive</option>
+                        <option value="semiconductors">Semiconductors</option>
+                        <option value="computer_networking">Computer Networking</option>
+                        <option value="food_and_beverages">Food & Beverages</option>
+                        <option value="oil_and_energy">Oil & Energy</option>
+                        <option value="transportation_trucking_railroad">Transportation/Trucking/Railroad</option>
+                        <option value="pharmaceuticals">Pharmaceuticals</option>
+                        <option value="consumer_goods">Consumer Goods</option>
+                        <option value="design">Design</option>
+                        <option value="education_management">Education Management</option>
+                        <option value="insurance">Insurance</option>
+                        <option value="photography">Photography</option>
+                        <option value="logistics_and_supply_chain">Logistics and Supply Chain</option>
+                        <option value="publishing">Publishing</option>
+                        <option value="real_estate">Real Estate</option>
+                        <option value="translation_and_localization">Translation and Localization</option>
+                        <option value="facilities_services">Facilities Services</option>
+                        <option value="investment_banking">Investment Banking</option>
+                        <option value="cosmetics">Cosmetics</option>
+                        <option value="human_resources">Human Resources</option>
+                        <option value="medical_devices">Medical Devices</option>
+                        <option value="biotechnology">Biotechnology</option>
+                        <option value="mechanical_or_industrial_engineering">Mechanical or Industrial Engineering</option>
+                        <option value="broadcast_media">Broadcast Media</option>
+                        <option value="hospitality">Hospitality</option>
+                        <option value="sporting_goods">Sporting Goods</option>
+                        <option value="chemicals">Chemicals</option>
+                        <option value="airlines_aviation">Airlines/Aviation</option>
+                        <option value="commercial_real_estate">Commercial Real Estate</option>
+                        <option value="construction">Construction</option>
+                        <option value="security_and_investigations">Security and Investigations</option>
+                        <option value="supermarkets">Supermarkets</option>
+                        <option value="health_wellness_and_fitness">Health, Wellness and Fitness</option>
+                        <option value="food_production">Food Production</option>
+                        <option value="civil_engineering">Civil Engineering</option>
+                        <option value="medical_practice">Medical Practice</option>
+                        <option value="media_production">Media Production</option>
+                        <option value="machinery">Machinery</option>
+                        <option value="utilities">Utilities</option>
+                        <option value="textiles">Textiles</option>
+                        <option value="research">Research</option>
+                        <option value="package_freight_delivery">Package/Freight Delivery</option>
+                        <option value="mining_and_metals">Mining & Metals</option>
+                        <option value="mental_health_care">Mental Health Care</option>
+                        <option value="outsourcing_offshoring">Outsourcing/Offshoring</option>
+                        <option value="professional_training_and_coaching">Professional Training & Coaching</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="information_services">Information Services</option>
+                        <option value="international_affairs">International Affairs</option>
+                        <option value="wireless">Wireless</option>
+                        <option value="writing_and_editing">Writing and Editing</option>
+                        <option value="building_materials">Building Materials</option>
+                        <option value="higher_education">Higher Education</option>
+                        <option value="law_practice">Law Practice</option>
+                        <option value="computer_hardware">Computer Hardware</option>
+                        <option value="tobacco">Tobacco</option>
+                        <option value="railroad_manufacture">Railroad Manufacture</option>
+                        <option value="international_trade_and_development">International Trade and Development</option>
+                        <option value="public_relations_and_communications">Public Relations and Communications</option>
+                        <option value="non_profit_organization_management">Non-Profit Organization Management</option>
+                        <option value="printing">Printing</option>
+                        <option value="staffing_and_recruiting">Staffing and Recruiting</option>
+                        <option value="environmental_services">Environmental Services</option>
+                        <option value="capital_markets">Capital Markets</option>
+                        <option value="farming">Farming</option>
+                        <option value="business_supplies_and_equipment">Business Supplies and Equipment</option>
+                        <option value="primary_secondary_education">Primary/Secondary Education</option>
+                        <option value="legislative_office">Legislative Office</option>
+                        <option value="industrial_automation">Industrial Automation</option>
+                        <option value="wine_and_spirits">Wine and Spirits</option>
+                        <option value="paper_and_forest_products">Paper & Forest Products</option>
+                        <option value="leisure_travel_and_tourism">Leisure, Travel & Tourism</option>
+                        <option value="arts_and_crafts">Arts and Crafts</option>
+                        <option value="packaging_and_containers">Packaging and Containers</option>
+                        <option value="marketing_and_advertising">Marketing and Advertising</option>
+                        <option value="civic_and_social_organization">Civic & Social Organization</option>
+                        <option value="apparel_and_fashion">Apparel & Fashion</option>
+                        <option value="individual_and_family_services">Individual & Family Services</option>
+                        <option value="music">Music</option>
+                        <option value="motion_pictures_and_film">Motion Pictures and Film</option>
+                        <option value="graphic_design">Graphic Design</option>
+                        <option value="luxury_goods_and_jewelry">Luxury Goods & Jewelry</option>
+                        <option value="renewables_and_environment">Renewables & Environment</option>
+                        <option value="legal_services">Legal Services</option>
+                        <option value="consumer_services">Consumer Services</option>
+                        <option value="law_enforcement">Law Enforcement</option>
+                        <option value="philanthropy">Philanthropy</option>
+                        <option value="wholesale">Wholesale</option>
+                        <option value="glass_ceramics_and_concrete">Glass, Ceramics & Concrete</option>
+                        <option value="judiciary">Judiciary</option>
+                        <option value="maritime">Maritime</option>
+                        <option value="market_research">Market Research</option>
+                        <option value="government_relations">Government Relations</option>
+                        <option value="dairy">Dairy</option>
+                        <option value="public_safety">Public Safety</option>
+                        <option value="recreational_facilities_and_services">Recreational Facilities and Services</option>
+                        <option value="gambling_and_casinos">Gambling & Casinos</option>
+                        <option value="computer_games">Computer Games</option>
+                        <option value="religious_institutions">Religious Institutions</option>
+                        <option value="warehousing">Warehousing</option>
+                        <option value="newspapers">Newspapers</option>
+                        <option value="fishery">Fishery</option>
+                        <option value="political_organization">Political Organization</option>
+                        <option value="investment_management">Investment Management</option>
+                        <option value="animation">Animation</option>
+                        <option value="computer_and_network_security">Computer & Network Security</option>
+                        <option value="architecture_and_planning">Architecture & Planning</option>
+                        <option value="e_learning">E-Learning</option>
+                        <option value="import_and_export">Import and Export</option>
+                        <option value="events_services">Events Services</option>
+                        <option value="online_media">Online Media</option>
+                        <option value="furniture">Furniture</option>
+                        <option value="plastics">Plastics</option>
+                        <option value="sports">Sports</option>
+                        <option value="veterinary">Veterinary</option>
+                        <option value="executive_office">Executive Office</option>
+                        <option value="program_development">Program Development</option>
+                        <option value="fine_art">Fine Art</option>
+                        <option value="fund_raising">Fund-Raising</option>
+                        <option value="alternative_dispute_resolution">Alternative Dispute Resolution</option>
+                        <option value="museums_and_institutions">Museums and Institutions</option>
+                        <option value="alternative_medicine">Alternative Medicine</option>
+                        <option value="think_tanks">Think Tanks</option>
+                        <option value="shipbuilding">Shipbuilding</option>
+                        <option value="nonprofit_organization_management">Nonprofit Organization Management</option>
+                        <option value="libraries">Libraries</option>
+                        <option value="performing_arts">Performing Arts</option>
+                        <option value="venture_capital_and_private_equity">Venture Capital & Private Equity</option>
+                        <option value="nanotechnology">Nanotechnology</option>
+                        <option value="ranching">Ranching</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4 d-flex">
+                    <label for="year-founded">Year Founded</label>
+                    <input type="number" name="year_founded" min="1450" max="2099" step="1" value="2024" id="year-founded" class="form-control"/>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <input type="text" id="employees-from-textbox" name="employees-from-textbox" class="form-control" placeholder="Enter employees (from)">
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="text" id="employees-to-textbox" name="employees-to-textbox" class="form-control" placeholder="Enter employees (to)">
+                </div>
+                <div class="form-group col-md-4">
+                    <select class="form-control" name="country">
+                        <option selected>Country</option>
+                            <option value="">No Input</option>
+                            <option value="united states">United States</option>
+                            <option value="india">India</option>
+                            <option value="ireland">Ireland</option>
+                            <option value="united kingdom">United Kingdom</option>
+                            <option value="germany">Germany</option>
+                            <option value="finland">Finland</option>
+                            <option value="france">France</option>
+                            <option value="sweden">Sweden</option>
+                            <option value="netherlands">Netherlands</option>
+                            <option value="switzerland">Switzerland</option>
+                            <option value="china">China</option>
+                            <option value="canada">Canada</option>
+                            <option value="spain">Spain</option>
+                            <option value="brazil">Brazil</option>
+                            <option value="saudi arabia">Saudi Arabia</option>
+                            <option value="australia">Australia</option>
+                            <option value="turkey">Turkey</option>
+                            <option value="czechia">Czechia</option>
+                            <option value="united arab emirates">United Arab Emirates</option>
+                            <option value="south korea">South Korea</option>
+                            <option value="singapore">Singapore</option>
+                            <option value="south africa">South Africa</option>
+                            <option value="mexico">Mexico</option>
+                            <option value="taiwan">Taiwan</option>
+                            <option value="japan">Japan</option>
+                            <option value="belgium">Belgium</option>
+                            <option value="italy">Italy</option>
+                            <option value="colombia">Colombia</option>
+                            <option value="algeria">Algeria</option>
+                            <option value="norway">Norway</option>
+                            <option value="qatar">Qatar</option>
+                            <option value="venezuela">Venezuela</option>
+                            <option value="indonesia">Indonesia</option>
+                            <option value="malaysia">Malaysia</option>
+                            <option value="denmark">Denmark</option>
+                            <option value="luxembourg">Luxembourg</option>
+                            <option value="hong kong">Hong Kong</option>
+                            <option value="philippines">Philippines</option>
+                            <option value="austria">Austria</option>
+                            <option value="chile">Chile</option>
+                            <option value="new zealand">New Zealand</option>
+                            <option value="kuwait">Kuwait</option>
+                            <option value="argentina">Argentina</option>
+                            <option value="peru">Peru</option>
+                            <option value="greece">Greece</option>
+                            <option value="liechtenstein">Liechtenstein</option>
+                            <option value="oman">Oman</option>
+                            <option value="russia">Russia</option>
+                            <option value="pakistan">Pakistan</option>
+                            <option value="lebanon">Lebanon</option>
+                            <option value="uruguay">Uruguay</option>
+                            <option value="bermuda">Bermuda</option>
+                            <option value="iran">Iran</option>
+                            <option value="nigeria">Nigeria</option>
+                            <option value="egypt">Egypt</option>
+                            <option value="poland">Poland</option>
+                            <option value="thailand">Thailand</option>
+                            <option value="jamaica">Jamaica</option>
+                            <option value="morocco">Morocco</option>
+                            <option value="romania">Romania</option>
+                            <option value="bangladesh">Bangladesh</option>
+                            <option value="israel">Israel</option>
+                            <option value="jordan">Jordan</option>
+                            <option value="kenya">Kenya</option>
+                            <option value="sri lanka">Sri Lanka</option>
+                            <option value="puerto rico">Puerto Rico</option>
+                            <option value="kazakhstan">Kazakhstan</option>
+                            <option value="estonia">Estonia</option>
+                            <option value="costa rica">Costa Rica</option>
+                            <option value="portugal">Portugal</option>
+                            <option value="ukraine">Ukraine</option>
+                            <option value="ethiopia">Ethiopia</option>
+                            <option value="panama">Panama</option>
+                            <option value="vietnam">Vietnam</option>
+                            <option value="cyprus">Cyprus</option>
+                            <option value="tunisia">Tunisia</option>
+                            <option value="hungary">Hungary</option>
+                            <option value="latvia">Latvia</option>
+                            <option value="uganda">Uganda</option>
+                            <option value="serbia">Serbia</option>
+                            <option value="croatia">Croatia</option>
+                            <option value="cayman islands">Cayman Islands</option>
+                            <option value="fiji">Fiji</option>
+                            <option value="slovenia">Slovenia</option>
+                            <option value="iceland">Iceland</option>
+                            <option value="palestine">Palestine</option>
+                            <option value="zimbabwe">Zimbabwe</option>
+                            <option value="bahrain">Bahrain</option>
+                            <option value="ghana">Ghana</option>
+                            <option value="papua new guinea">Papua New Guinea</option>
+                            <option value="trinidad and tobago">Trinidad and Tobago</option>
+                            <option value="dominican republic">Dominican Republic</option>
+                            <option value="jersey">Jersey</option>
+                            <option value="angola">Angola</option>
+                            <option value="slovakia">Slovakia</option>
+                            <option value="bulgaria">Bulgaria</option>
+                            <option value="guatemala">Guatemala</option>
+                            <option value="saint lucia">Saint Lucia</option>
+                            <option value="senegal">Senegal</option>
+                            <option value="georgia">Georgia</option>
+                            <option value="ecuador">Ecuador</option>
+                            <option value="lithuania">Lithuania</option>
+                            <option value="madagascar">Madagascar</option>
+                            <option value="mauritius">Mauritius</option>
+                            <option value="honduras">Honduras</option>
+                            <option value="macau">Macau</option>
+                            <option value="syria">Syria</option>
+                            <option value="cameroon">Cameroon</option>
+                            <option value="nepal">Nepal</option>
+                            <option value="iraq">Iraq</option>
+                            <option value="malta">Malta</option>
+                            <option value="zambia">Zambia</option>
+                            <option value="tanzania">Tanzania</option>
+                            <option value="monaco">Monaco</option>
+                            <option value="azerbaijan">Azerbaijan</option>
+                            <option value="isle of man">Isle of Man</option>
+                            <option value="brunei">Brunei</option>
+                            <option value="namibia">Namibia</option>
+                            <option value="grenada">Grenada</option>
+                            <option value="botswana">Botswana</option>
+                            <option value="bhutan">Bhutan</option>
+                            <option value="el salvador">El Salvador</option>
+                            <option value="mozambique">Mozambique</option>
+                            <option value="french polynesia">French Polynesia</option>
+                            <option value="equatorial guinea">Equatorial Guinea</option>
+                            <option value="gibraltar">Gibraltar</option>
+                            <option value="cuba">Cuba</option>
+                            <option value="belarus">Belarus</option>
+                            <option value="armenia">Armenia</option>
+                            <option value="afghanistan">Afghanistan</option>
+                            <option value="micronesia">Micronesia</option>
+                            <option value="dominica">Dominica</option>
+                            <option value="sudan">Sudan</option>
+                            <option value="côte d’ivoire">Côte d’Ivoire</option>
+                            <option value="myanmar">Myanmar</option>
+                            <option value="bahamas">Bahamas</option>
+                            <option value="mongolia">Mongolia</option>
+                            <option value="albania">Albania</option>
+                            <option value="macedonia">Macedonia</option>
+                            <option value="bolivia">Bolivia</option>
+                            <option value="curaçao">Curaçao</option>
+                            <option value="suriname">Suriname</option>
+                            <option value="paraguay">Paraguay</option>
+                            <option value="guernsey">Guernsey</option>
+                            <option value="martinique">Martinique</option>
+                            <option value="moldova">Moldova</option>
+                            <option value="bosnia and herzegovina">Bosnia and Herzegovina</option>
+                            <option value="cambodia">Cambodia</option>
+                            <option value="new caledonia">New Caledonia</option>
+                            <option value="guam">Guam</option>
+                            <option value="réunion">Réunion</option>
+                            <option value="malawi">Malawi</option>
+                            <option value="nicaragua">Nicaragua</option>
+                            <option value="rwanda">Rwanda</option>
+                            <option value="greenland">Greenland</option>
+                            <option value="andorra">Andorra</option>
+                            <option value="libya">Libya</option>
+                            <option value="benin">Benin</option>
+                            <option value="burkina faso">Burkina Faso</option>
+                            <option value="maldives">Maldives</option>
+                            <option value="democratic republic of the congo">Democratic Republic of the Congo</option>
+                            <option value="uzbekistan">Uzbekistan</option>
+                            <option value="belize">Belize</option>
+                            <option value="somalia">Somalia</option>
+                            <option value="swaziland">Swaziland</option>
+                            <option value="british virgin islands">British Virgin Islands</option>
+                            <option value="guadeloupe">Guadeloupe</option>
+                            <option value="lesotho">Lesotho</option>
+                            <option value="gambia">Gambia</option>
+                            <option value="guinea">Guinea</option>
+                            <option value="montenegro">Montenegro</option>
+                            <option value="sierra leone">Sierra Leone</option>
+                            <option value="french guiana">French Guiana</option>
+                            <option value="bonaire">Bonaire</option>
+                            <option value="saint kitts and nevis">Saint Kitts and Nevis</option>
+                            <option value="saint vincent and the grenadines">Saint Vincent and the Grenadines</option>
+                            <option value="san marino">San Marino</option>
+                            <option value="vanuatu">Vanuatu</option>
+                            <option value="samoa">Samoa</option>
+                            <option value="niger">Niger</option>
+                            <option value="kiribati">Kiribati</option>
+                            <option value="togo">Togo</option>
+                            <option value="comoros">Comoros</option>
+                            <option value="palau">Palau</option>
+                            <option value="solomon islands">Solomon Islands</option>
+                            <option value="brunei">Brunei</option>
+                            <option value="tonga">Tonga</option>
+                            <option value="saint pierre and miquelon">Saint Pierre and Miquelon</option>
+                            <option value="liechtenstein">Liechtenstein</option>
+                            <option value="tuvalu">Tuvalu</option>
+                            <option value="laos">Laos</option>
+                            <option value="south sudan">South Sudan</option>
+                            <option value="saint barthélemy">Saint Barthélemy</option>
+                            <option value="saint martin">Saint Martin</option>
+                            <option value="french southern and antarctic lands">French Southern and Antarctic Lands</option>
+                            <option value="western sahara">Western Sahara</option>
+                            <option value="svalbard and jan mayen">Svalbard and Jan Mayen</option>
+                            <option value="anguilla">Anguilla</option>
+                            <option value="saint helena">Saint Helena</option>
+                            <option value="mayotte">Mayotte</option>
+                            <option value="tuvalu">Tuvalu</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-12 d-flex justify-content-start">
+                    <button type="button" class="btn btn-primary mr-2" id="query-button">Query Data</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+            </div>
+        </form>
+    <div id="results"></div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/querybuilder.js' %}"></script>
+
+</body>
+</html>
